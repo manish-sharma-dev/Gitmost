@@ -1,0 +1,59 @@
+.navbar{
+    width: 100%;
+    height: auto;
+    /* background-color: burlywood; */
+    padding: 35px 25px 20px 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* navbar first part design here  */
+
+.navbar_first_part{
+    display: flex;
+    gap: 20px;
+}
+
+.logoName{
+    font-size: 3.5rem;
+}
+
+.description{
+    font-size: 1.5rem;
+    font-weight: 350;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* navbar part second css here  */
+
+.navbar_second_component{
+    display: flex;
+    gap: 3vw;
+}
+
+.view_source_code{
+    margin: 20px 0;
+    padding: 4px 20px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border-style: none;
+    background-color: black;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.view_source_code:hover{
+    background-color: coral;
+    color: black;
+    transition: all 350ms ease;
+}
+
+.toggle{
+    margin: 20px 0;
+    padding: 4px 30px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border-style: none;
+    background-color: black;
+    color: white;
+}
