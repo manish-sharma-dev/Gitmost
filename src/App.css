@@ -1,6 +1,7 @@
 *{
   margin: 0;
   padding: 0;
+  background-color: #131313;
 }
 
 .App {
@@ -8,10 +9,7 @@
   margin: 0 15vw;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
