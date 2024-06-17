@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import './main.css'
-// import {} from '../../utils/fetchdata'
+// import { Star } from 'react-feather'
 
 
 export default function Main() {
@@ -20,7 +20,9 @@ export default function Main() {
           };
 
           const params = new URLSearchParams({
-              'q': 'stars:>1',
+              // 'q':'created_at:%3E2023-01-01',
+               // 'q': 'stars:>1',
+              'q' : 'created:>2023-01-01',
               'sort': 'stars',
               'order': 'desc',
               'per_page': 3
@@ -36,15 +38,21 @@ export default function Main() {
               }
 
               const data = await response.json();
+              setRepos(data.items)
+              // console.log(data.items)
 
-              // Process and display the repositories
-              data.items.forEach(repo => {
-                  console.log(`Name: ${repo.name}`);
-                  console.log(`Description: ${repo.description}`);
-                  console.log(`Stars: ${repo.stargazers_count}`);
-                  console.log(`URL: ${repo.html_url}`);
-                  console.log('---');
-              });
+              // // Process and display the repositories
+              // data.items.forEach(repo => {
+              //     console.log(`Name: ${repo.name}`);
+              //     console.log(`Username: ${repo.full_name}`);
+              //     console.log(`Name: ${repo.created_at}`);
+              //     console.log(`Name: ${repo.language}`);
+
+              //     console.log(`Description: ${repo.description}`);
+              //     console.log(`Stars: ${repo.stargazers_count}`);
+              //     console.log(`URL: ${repo.html_url}`);
+              //     console.log('---');
+              // });
 
               // Log rate limit information
               console.log(`Rate Limit Remaining: ${response.headers.get('X-RateLimit-Remaining')}`);
@@ -72,20 +80,24 @@ export default function Main() {
 
       <div className ='github_profiles_from_api'>
         
-        <div className="profile_component">
-            <div className="firstpart">
-                <p className='github_username'>Username /Project</p> 
-                <p className='built_by'>Built by Username</p>
-                <p className='github_project_description'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis a aspernatur ullam ab corporis animi sapiente totam! Cupiditate quibusdam odio praesentium quas, facilis esse assumenda. Consectetur harum rem incidunt a.</p>
-                <p className='language_used'>language starred fork</p>
-              </div>
 
-              <div className='secondpart'>
-                <img src='#' alt='profileimg' />
-              </div>
-          </div>
+        {repos.map((repo,id) => (
+            <div className="profile_component" key={id} >
+                <div className="firstpart">
+                    <p className='github_username'>{repo.full_name}</p> 
+                    <p className='built_by'>{repo.name}</p>
+                    <p className='built_by'>{repo.created_at}</p>
+                    <p className='github_project_description'>{repo.description}</p>
+                    <p className='language_used'>{repo.language}</p>
+                  </div>
+
+                  <div className='secondpart'>
+                    <img src='#' alt='profileimg' />
+                  </div>   
+            </div>
+        ))}
+
       </div>
-
     </div>
   )
 }
