@@ -12,7 +12,8 @@ export default function Main() {
   //fetching more trending repo 
       useEffect(()=>{
 
-          const TOKEN = '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';
+          const TOKEN = process.env.REACT_APP_GITHUB_API_TOKEN;
+
 
           async function fetchTrendingRepos(type) {
               const headers = {
