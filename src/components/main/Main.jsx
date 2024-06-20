@@ -1,18 +1,20 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import './main.css'
-import { Star } from 'react-feather'
+// import { Star } from 'react-feather'
+import logo from '../../assets/logo.jfif'
 
 
 export default function Main() {
   const [repos, setRepos ] = useState([]);
-  const [fetchType, setFetchType ] = useState('trending');
+  // const [fetchType, setFetchType ] = useState('trending');
 
 
   //fetching more trending repo 
       useEffect(()=>{
 
-          const TOKEN = process.env.REACT_APP_GITHUB_API_TOKEN;
+          // const TOKEN = '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';
+          const TOKEN = process.env.REACT_APP_GITHUB_PAT
 
 
           async function fetchTrendingRepos(type) {
@@ -21,29 +23,36 @@ export default function Main() {
                   'Accept': 'application/vnd.github.v3+json'
               };
 
-              //type check if type is trending then fetch most trending 
-              //if type is starred than fetch most starred project
-              let params ;
-
-              if (type === 'trending'){
-                params = new URLSearchParams({
-                  // 'q':'created_at:%3E2023-01-01',
-                  // 'q': 'stars:>1',
+              const params = new URLSearchParams({
                   'q' : 'created:>2024-06-01',
                   'sort': 'stars',
                   'order': 'desc',
                   'per_page': 15
               });
 
-            } else if (type === 'starred'){
-                params = new URLSearchParams({
-                'q' : 'created:>2023-06-01',
-                'sort': 'stars',
-                'p': 'stars:>50000',
-                'order': 'desc',
-                'per_page': 15
-            });
-          }
+              //type check if type is trending then fetch most trending 
+              //if type is starred than fetch most starred project
+          //     let params ;
+
+          //     if (type === 'trending'){
+          //       params = new URLSearchParams({
+          //         // 'q':'created_at:%3E2023-01-01',
+          //         // 'q': 'stars:>1',
+                  // 'q' : 'created:>2024-06-01',
+                  // 'sort': 'stars',
+                  // 'order': 'desc',
+                  // 'per_page': 15
+          //     });
+
+          //   } else if (type === 'starred'){
+          //       params = new URLSearchParams({
+          //       'q' : 'created:>2023-06-01',
+          //       'sort': 'stars',
+          //       'p': 'stars:>50000',
+          //       'order': 'desc',
+          //       'per_page': 15
+          //   });
+          // }
                const url = `https://api.github.com/search/repositories?${params}`;
 
               try {
@@ -67,26 +76,37 @@ export default function Main() {
           }
 
           // Call the function
-            fetchTrendingRepos(fetchType);
-    }, [fetchType]);
+            // fetchTrendingRepos(fetchType);
+        },[]);
+    // }, [fetchType]);
 
-    function handleFetchSearch(type){
-      setFetchType(type)
-    };
+    // function handleFetchSearch(type){
+    //   setFetchType(type)
+    // };
 
   return (
     <div className='main'>
       <p className='heading'>Find The most <span className='span_ele'>Trending</span> Github Repositeries Every Week</p>
       
       <div className='category'>
-        <p className='trending' onClick={()=> handleFetchSearch('trending')} >Trending</p><br />
-        <p className='starred' onClick={()=> handleFetchSearch('starred')}>Starred</p>
-      </div>
 
+      <p className='date_title' >This Week Data:<p className='data_section'>12-06-2024 to 18-06-2024</p> </p>
+
+          <div className='language_option'>
+            <label for="options" className='labels'>Language :</label>
+              <select className='options' name='options'>
+                <option>default</option>
+                <option>python</option>
+                <option>typescript</option>
+                <option>javascript</option>
+                <option>java</option>
+              </select>
+          </div>
+      </div>
 
       <div className ='github_profiles_from_api'>
         
-              {repos.map((repo,id) => (
+             {/* {repos.map((repo,id) => (
                 <div className="profile_component" key={id} >
                     <div className="firstpart">
                         <p className='github_username'>{repo.full_name}</p> 
@@ -101,7 +121,25 @@ export default function Main() {
                         <img src='#' alt='profileimg' />
                       </div>   
                 </div>
-            ))}
+            ))} */}
+
+                <div className="profile_component" >
+                    <div className="firstpart">
+                        <p className='github_username'>full_name /username</p> 
+                        <p className='built_by'>built by: name <span className='built_by'>created_at</span></p>
+                        
+                        <p className='github_project_description'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, harum. Alias labore suscipit porro odio, repellat esse sunt. Odio commodi nulla aperiam odit mollitia consectetur voluptas eaque impedit enim molestiae?</p>
+
+                        <div>
+                        <p className='language_used'>language <span className='language_used'>stargazers_count </span><span className='language_used'>forked </span></p>
+                        </div>
+
+                      </div>
+
+                      <div className='secondpart'>
+                        <img src={logo} width={100} height={100} alt='profileimg' />
+                      </div>   
+                </div>
 
       </div>
     </div>

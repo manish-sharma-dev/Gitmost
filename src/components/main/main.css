@@ -23,40 +23,41 @@
 
 .category{
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-between;
     color: white;
-    margin: 23px 20vw 0;
-    padding: 7px 0;
-    border-radius: 10px;
+    padding: 60px 0 0;
     cursor: pointer;
     font-family:Arial, Helvetica, sans-serif;
-    /* background-color: #1E1E1E; */
 }
 
 
-.trending{
-    padding: 6px 30px;
-    font-size: 16px;
+.date_title{
+    padding: 10px 0 0 17px;
+    font-size: 20px;
     border-radius: 6px;
-    opacity: 0.6;
-    /* background-color: #d9f9719e; */
     color: white;
-    text-decoration: underline;
-    transition: all 1s ease;
+    font-weight: 600;
+    /* text-decoration: underline; */
+    /* transition: all 1s ease; */
 }
 
-.trending:hover{
-    background-color: dimgray;
-    color: white;
+.data_section{
+    font-weight: 400;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.labels{
+    /* padding-top: 40vw; */
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.options{
+    padding: 5px 30px;
+    margin-top: 5px;
+    font-size: 15px;
     
-   
-    /* font-weight: 600; */
-}
-
-.starred{
-    padding: 6px 30px;
-    font-size: 156x;
     border-radius: 6px;
     opacity: 0.6;
 }
@@ -71,7 +72,7 @@
 
  .github_profiles_from_api{
     margin-top: 16px;
-    padding: 20px 10px;
+    padding: 20px 9px;
 
  }
 
@@ -80,7 +81,7 @@
     background-color: #1E1E1E;
     color: white;
     margin: 5px;
-    padding: 25px;
+    padding: 24px;
     gap: 8vw;
     border-radius: 5px;
  }
@@ -104,13 +105,11 @@
 }
 
 .github_project_description{
-    /* margin-top: 25px; */
     font-size: 15px;
-    /* opacity: 0.8; */
     background-color: #1E1E1E;
     color: white;
     padding-top:25px;
-
+    width: 45vw;
 }
 
 .language_used{
