@@ -12,8 +12,6 @@ export default function Main() {
 
   //fetching more trending repo 
       useEffect(()=>{
-
-          // const TOKEN = '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';
           const TOKEN = process.env.REACT_APP_GITHUB_PAT
 
 
