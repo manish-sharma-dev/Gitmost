@@ -25,7 +25,7 @@ function openURL(){
           
           <div className=" flex gap-8">
 
-            <button style={{ backgroundColor:'#DAF971', color: 'black', borderRadius:'10px'}} className='mt-6 mb-6 mr-0 ml-0 pt-1 pb-1 pr-4 pl-5 text-sm' onClick={openURL}>Check On Github</button>
+            <button style={{ backgroundColor:'#DAF971', color: 'black', borderRadius:'10px'}} className='mt-6 mb-6 mr-2 ml-0 pt-1 pb-1 pr-4 pl-5 text-sm' onClick={openURL}>Check On Github</button>
 
             {/* <button className='mt-6 mb-6 mr-1 ml-0 pt-1 pb-1 pr-4 pl-5 text-xs'style={{ backgroundColor:'#5f5f5f', color: 'white', borderRadius:'10px', borderStyle:'none' }} ><Star size={15} /></button> */}
 
