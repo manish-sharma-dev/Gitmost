@@ -128,5 +128,21 @@
     background-color: #1E1E1E;
 }
 
+.star_count{
+    padding-top:15px ;
+    font-size: 11px;
+    background-color: #1E1E1E;
+    color: rgba(255, 255, 255, 0.683);
+}
+
+.fork_count{
+    /* padding-top:15px ; */
+    font-size: 11px;
+    background-color: #1E1E1E;
+    color: rgba(255, 255, 255, 0.683);
+}
 
 
+.secondPartImg{
+    border-radius: 50px;
+}

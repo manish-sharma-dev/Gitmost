@@ -1,18 +1,70 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import './main.css'
-// import { Star } from 'react-feather'
+import { GitBranch, Star } from 'react-feather'
 // import logo from '../../assets/logo.jfif'
+
+const languageList = [
+  'ABAP',
+  'ActionScript',
+  'Ada',
+  'Apex',
+  'Assembly',
+  'C',
+  'C#',
+  'C++',
+  'Clojure',
+  'COBOL',
+  'CoffeeScript',
+  'Dart',
+  'Delphi',
+  'Elixir',
+  'Elm',
+  'Erlang',
+  'Fortran',
+  'Go',
+  'Groovy',
+  'Haskell',
+  'HTML',
+  'Java',
+  'JavaScript',
+  'Kotlin',
+  'LabVIEW',
+  'Lisp',
+  'Lua',
+  'MATLAB',
+  'Objective-C',
+  'Pascal',
+  'Perl',
+  'PHP',
+  'PowerShell',
+  'Python',
+  'R',
+  'Ruby',
+  'Rust',
+  'Scala',
+  'Scheme',
+  'Shell',
+  'Swift',
+  'TypeScript',
+  'VB.NET',
+  'Verilog',
+  'VHDL',
+  'Visual Basic',
+  'XML'
+];
+
 
 
 export default function Main() {
   const [repos, setRepos ] = useState([]);
-  const [langugeUsed, setLanguageUsed ] = useState('default');
+  const [langugefilter, setLanguageFilter ] = useState('');
 
 
   //fetching more trending repo 
       useEffect(()=>{
           const TOKEN = process.env.EACT_APP_GITHUB_PAT;
+          
 
 
           async function fetchTrendingRepos() {
@@ -21,54 +73,29 @@ export default function Main() {
                   'Accept': 'application/vnd.github.v3+json'
               };
 
-              // const params = new URLSearchParams({
-              //     'q' : 'created:>2024-06-01',
-              //     'sort': 'stars',
-              //     'order': 'desc',
-              //     'per_page': 15
-              // });
 
               //type check if type is trending then fetch most trending 
               //if type is starred than fetch most starred project
 
           let params ;
 
-          if(langugeUsed === 'default'){
+          if(langugefilter === 'default'){
             params = new URLSearchParams({
                   'q' : 'created:>2024-06-01',
                   'sort': 'stars',
                   'order': 'desc',
-                  'per_page': 20
+                  'per_page': 40
             });
 
           } else {
             params = new URLSearchParams({
-                    'q' : `created:2023-06-01..2023-06-10 language:${langugeUsed}`,
+                    'q' : `created:2023-06-01..2023-06-10 language:${langugefilter}`,
                     'sort': 'stars',
                     'order': 'desc',
-                    'per_page': 18
+                    'per_page': 20
                 });
           }
 
-          //     if (type === 'trending'){
-          //       params = new URLSearchParams({
-          //         // 'q':'created_at:%3E2023-01-01',
-          //         // 'q': 'stars:>1',
-          //         'q' : 'created:>2024-06-01',
-          //         'sort': 'stars',
-          //         'order': 'desc',
-          //         'per_page': 15
-          //     });
-
-          //   } else if (type === 'starred'){
-          //       params = new URLSearchParams({
-          //       'q' : 'created:>2023-06-01',
-          //       'sort': 'stars',
-          //       'p': 'stars:>50000',
-          //       'order': 'desc',
-          //       'per_page': 15
-          //   });
-          // }
                const url = `https://api.github.com/search/repositories?${params}`;
 
               try {
@@ -93,11 +120,11 @@ export default function Main() {
 
           // Call the function
             fetchTrendingRepos();
-        },[langugeUsed]);
+        },[langugefilter]);
 
-    // function handleFetchSearch(type){
-    //   setFetchType(type)
-    // };
+        const handleLanguageFilterChange = (e) => {
+          setLanguageFilter(e.target.value);
+        };
 
   return (
     <div className='main'>
@@ -108,13 +135,13 @@ export default function Main() {
       <p className='date_title' >This Week Data:<p className='data_section'>12-06-2024 to 18-06-2024</p> </p>
 
           <div className='language_option'>
+
             <label for="options" className='labels'>Filter :</label>
-              <select className='options' name='options' value={langugeUsed} onChange={(e)=> setLanguageUsed(e.target.value)}>
-                <option>default</option>
-                <option>python</option>
-                <option>typescript</option>
-                <option>javascript</option>
-                <option>java</option>
+              <select className='options' name='options' value={langugefilter} onChange={handleLanguageFilterChange}>
+              <option value=''>All Languages</option>
+              {languageList.map((lang, index) => (
+              <option key={index} value={lang}>{lang}</option>
+              ))}
               </select>
           </div>
       </div>
@@ -124,42 +151,29 @@ export default function Main() {
              {repos.map((repo,id) => (
                 <div className="profile_component" key={id} >
                     <div className="firstpart">
-                        <p className='github_username'>{repo.full_name}</p> 
-                        <p className='built_by'>Built by: {repo.name} <span className='built_by'>{repo.created_at}</span></p>
+                        <p className='github_username' onClick={()=> window.open(repo.html_url)}>{repo.full_name}</p> 
+                        <p className='built_by'>Built by: {repo.owner.login} <span className='built_by pl-3 text-xs'>{repo.created_at}</span> </p>
                         {/* <p className='built_by'>{repo.created_at}</p> */}
                         <p className='github_project_description'>{repo.description}</p>
 
-                        <div>
-                          <p className='language_used'>{repo.language} <span className='language_used'>{repo.stargazers_count} </span><span className='language_used'>{repo.forks_count} </span> <span className='language_used'>{repo.watchers_count} </span></p>
-                          {/* <p className='language_used'>{repo.stargazers_count} <Star size={13}/></p> */}
+                        <div className='flex' style={{ backgroundColor : '#1E1E1E'}}>
+                          <p className='language_used'>{repo.language} </p>
+                          <Star className='mt-6 ml-5 mr-1'  size={9}/>
+                          <p className='star_count mt-1 pr-3  '>{repo.stargazers_count} </p> 
+                          <GitBranch className='mt-6 ml-2 mr-1' size={9}/>
+                          <p className='fork_count mt-5'>{repo.forks_count} </p>
+                          
+                         
                         </div>
 
                     </div>
 
                       <div className='secondpart'>
-                        <img src={repo.avatar_url} width={80} height={80} alt='profileimg' />
+                        <img src={repo.owner.avatar_url} width={80} height={80} alt='profileimg' className='secondPartImg' />
                       </div>   
                 </div>
             ))}
                 
-
-                {/* <div className="profile_component" >
-                    <div className="firstpart">
-                        <p className='github_username'>full_name /username</p> 
-                        <p className='built_by'>built by: name <span className='built_by'>created_at</span></p>
-                        
-                        <p className='github_project_description'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, harum. Alias labore suscipit porro odio, repellat esse sunt. Odio commodi nulla aperiam odit mollitia consectetur voluptas eaque impedit enim molestiae?</p>
-
-                        <div>
-                        <p className='language_used'>language <span className='language_used'>stargazers_count </span><span className='language_used'>forked </span></p>
-                        </div>
-
-                      </div>
-
-                      <div className='secondpart'>
-                        <img src={logo} width={100} height={100} alt='profileimg' />
-                      </div>   
-                </div> */}
       </div>
     </div>
   )
