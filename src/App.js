@@ -4,8 +4,6 @@ import Main from './components/main/Main'
 import Footer from './components/footer/Footer'
 import React,{useState} from 'react';
 
-
-
 function App() {
   const [darkmode,setDarkMode] = useState(false);
 

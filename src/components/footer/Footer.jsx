@@ -13,6 +13,14 @@ export default function Footer() {
     window.location.href = 'mailto:manishvsharma1@gmail.com?subject=Message%20from%20Website&body=Enter%20your%20message%20here';
   }
 
+  function openTwitter(){
+    window.open('https://twitter.com/Manish1_sh')
+  }
+
+  function openLinkedin(){
+    window.open('https://www.linkedin.com/in/manish-sharma111')
+  }
+
   return (
     <div className='mt-12 ml-12 mr-12'>
         <div style={{color:'white',backgroundColor : '#1E1E1E' }}>
@@ -20,9 +28,9 @@ export default function Footer() {
            
            <ul  style={{color:'white',backgroundColor : '#1E1E1E' }} className='flex justify-center gap-5 pt-3'>
             <li className='opacity-70 hover:opacity-100'><GitHub size={18}  onClick={openGithub}/></li>
-            <li className='opacity-100 hover:opacity-70'><Linkedin size={18}  /></li>
+            <li className='opacity-100 hover:opacity-70'><Linkedin size={18} onClick={openLinkedin} /></li>
             <li className='opacity-70 hover:opacity-100'><Mail size={18} onClick={openMail} /></li>
-            <li className='opacity-100 hover:opacity-70'><Twitter size={18} /></li>
+            <li className='opacity-100 hover:opacity-70'><Twitter size={18} onClick={openTwitter}/></li>
            </ul>
 
            <p  style={{color:'white',backgroundColor : '#1E1E1E' }} className='p-3  pl-5 text-sm opacity-50 text-center'>Starting developer, thriving in the joy of coding ,and eager to learn new technologies .....</p>

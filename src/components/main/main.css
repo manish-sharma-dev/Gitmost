@@ -8,15 +8,37 @@
 .heading{
     /* color: white; */
     text-align: center;
-    font-size:15px;
-    text-decoration:underline;
+    font-size:30px;
+    font-family: sans-serif;
+    font-weight:900;
+    /* text-decoration:underline; */
     /* background-color:burlywood; */
+}
+
+.nee_element{
+    font-size: 18px;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.repo{
+    background-color: crimson;
+    padding: 0 4px;
+}
+
+.product{
+    background-color: crimson;
 }
 
 .span_ele{
     color: #DAF971;
-    cursor: pointer;
-    
+    cursor: pointer; 
+}
+
+.span_ele:hover{
+    /* opacity: 0.6; */
+    color: firebrick;
+    transition: all ease 300ms;
 }
 
 /* categorty section start here  */
@@ -33,17 +55,17 @@
 
 .date_title{
     padding: 10px 0 0 17px;
-    font-size: 20px;
+    font-size: 18px;
     border-radius: 6px;
     color: white;
-    font-weight: 600;
+    font-weight: 700;
     /* text-decoration: underline; */
     /* transition: all 1s ease; */
 }
 
 .data_section{
     font-weight: 400;
-    font-size: 14px;
+    font-size: 11px;
     opacity: 0.7;
 }
 
@@ -68,6 +90,56 @@
 .starred:hover{
     background-color: dimgray;
     color: white;
+}
+
+/* button section / */
+
+.searchtype{
+    /* border: 1px solid white; */
+    display: flex;justify-content: center;
+    gap: 3vw;
+    /* margin: 15px 20px 15px 0; */
+    padding: 20px ;
+    font-size: 15px;
+    font-family: sans-serif;
+}
+
+.github_btn{
+    background-color:whitesmoke;
+    color: black;
+    border-radius: 5px;
+    padding: 1px 10px;
+    font-weight:500 ;
+}
+
+/* .github_btn:hover{
+    background-color:#1E1E1E;
+    color: aliceblue;
+    outline: 1px solid white;
+} */
+
+.github_btn:focus{
+    background-color:#1E1E1E;
+    color: aliceblue;
+    transition: all ease 400ms;
+    outline: 1px solid white;
+}
+
+
+
+.producthunt_btn{
+    background-color:whitesmoke;
+    color: black;
+    border-radius: 5px;
+    padding: 1px 10px;
+    font-weight:500 ;
+}
+
+.producthunt_btn:focus{
+    background-color:#1E1E1E;
+    color: aliceblue;
+    transition: all ease 400ms;
+    outline: 1px solid white;
 }
 
 /* main item list start here 
@@ -145,4 +217,11 @@
 
 .secondPartImg{
     border-radius: 50px;
+}
+
+/* product hunt css styling  */
+
+.producthunt-second-image:hover{
+    content-visibility: "comment";
+    background-color: red;
 }
